@@ -2,6 +2,7 @@
 
 
     echo 'hola!';
+    echo 'prueba';
 
 
 ?>
