@@ -5,6 +5,8 @@ class Disco {
 
     private $titulo;
 
+    private $critica;
+
     private $fecha_publicacion;
 
     private $puntuacion;
@@ -12,9 +14,10 @@ class Disco {
     private $ismn;
 
 
-function __construct($id_disco, $titulo, $fecha_publicacion, $puntuacion, $ismn){
+function __construct($id_disco, $titulo, $critica, $fecha_publicacion, $puntuacion, $ismn){
     $this->id_disco=$id_disco;
     $this->titulo=$titulo;
+    $this->critica=$critica;
     $this->fecha_publicacion=$fecha_publicacion;
     $this->puntuacion=$puntuacion;
     $this->ismn=$ismn;  
@@ -38,6 +41,15 @@ function getTitulo(){
 function setTitulo($titulo){
     $this->titulo=$titulo;
 }
+
+function getCritica(){
+    return $this->critica;
+}
+
+function setCritica($critica){
+    $this->critica=$critica;
+}
+
 
 function getFecha_publicacion(){
     return $this->fecha_publicacion;
