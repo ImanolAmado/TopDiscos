@@ -77,6 +77,7 @@ class Usuario
         $stmt->execute();
         $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        
         if($resultados == null){
             echo 'No se ha encontrado el usuario';
         }else{
