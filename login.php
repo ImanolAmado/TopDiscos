@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         } else echo "Lo siento password no coinciden";         
     }
 
-
+}
     /////////////////// FUNCIONES ///////////////////
 
     function emailValido($email){
@@ -61,4 +61,3 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
    
 
-}
