@@ -26,17 +26,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $passwordEncontrado = $resultados['password'];
         $emailEncontrado = $resultados['email'];
         $rolEncontrado = $resultados['rol'];
+        $usuarioEncontrado = $resultados['usuario'];
 
         
         if (password_verify($passIntroducido,$passwordEncontrado)){                        
             $_SESSION['email']=$emailEncontrado;
+            $_SESSION['usuario']=$usuarioEncontrado;
             header("Location: welcome.php");    
             exit();     
            
         } else echo "Lo siento password no coinciden";         
     }
 
-
+}
     /////////////////// FUNCIONES ///////////////////
 
     function emailValido($email){
@@ -59,6 +61,3 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         return $pass;
     }
     
-   
-
-}

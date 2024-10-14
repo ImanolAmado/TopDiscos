@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['email'])){
     header("Location:index.php");
+    exit();
 }
 ?>
 
@@ -13,8 +14,8 @@ if(!isset($_SESSION['email'])){
     <title>Document</title>
 </head>
 <body>
-    <h1>¡Bienvenido!<?php echo " ".$_SESSION['email']?></h1><br>
-    <form class="exit" method="post" action="logout.php">
+    <h1>¡Bienvenid@!<?php echo " ".$_SESSION['usuario']?></h1><br>
+    <form class="exit" method="post" action="index.php">
         <input type="submit" value="Cerrar sesión">
     </form>    
 </body>
