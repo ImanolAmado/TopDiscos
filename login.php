@@ -26,10 +26,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $passwordEncontrado = $resultados['password'];
         $emailEncontrado = $resultados['email'];
         $rolEncontrado = $resultados['rol'];
+        $usuarioEncontrado = $resultados['usuario'];
 
         
         if (password_verify($passIntroducido,$passwordEncontrado)){                        
             $_SESSION['email']=$emailEncontrado;
+            $_SESSION['usuario']=$usuarioEncontrado;
             header("Location: welcome.php");    
             exit();     
            
@@ -61,3 +63,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
    
 
+}

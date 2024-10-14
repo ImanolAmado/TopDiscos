@@ -67,7 +67,7 @@ class Usuario
         $conexion = conectar();
 
         // Consulta SQL login
-        $sql = "select password, email, rol from usuario where email = :email";
+        $sql = "select password, email, rol, usuario from usuario where email = :email";
 
         $stmt = $conexion->prepare($sql);
 
@@ -76,6 +76,7 @@ class Usuario
 
         $stmt->execute();
         $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
+
         
         if($resultados == null){
             echo 'No se ha encontrado el usuario';
