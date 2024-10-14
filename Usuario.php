@@ -1,12 +1,16 @@
 <?php
-Class Usuario{
+include_once "ConectorBBDD.php";
+
+class Usuario
+{
     private $id_usuario;
     private $nombre;
     private $password;
     private $email;
     private $rol;
 
-    function __construct($id_usuario, $nombre, $password, $email, $rol){
+    function __construct($id_usuario, $nombre, $password, $email, $rol)
+    {
         $this->id_usuario = $id_usuario;
         $this->nombre = $nombre;
         $this->password = $password;
@@ -16,38 +20,67 @@ Class Usuario{
 
     //Getters y Setters
 
-    function getI_usuario(){
+    function getI_usuario()
+    {
         return $this->id_usuario;
     }
-    function getNombre(){
+    function getNombre()
+    {
         return $this->nombre;
     }
-    function getPassword(){
+    function getPassword()
+    {
         return $this->password;
     }
-    function getEmail(){
+    function getEmail()
+    {
         return $this->email;
     }
-    function getRol(){
+    function getRol()
+    {
         return $this->rol;
     }
 
-    function setId_usuario($id_usuario){
-        $this->id_usuario=$id_usuario;
+    function setId_usuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
     }
-    function setNombre($nombre){
-        $this->nombre=$nombre;
+    function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
     }
-    function setPassword($password){
-        $this->password=$password;
+    function setPassword($password)
+    {
+        $this->password = $password;
     }
-    function setEmail($email){
-        $this->email=$email;
+    function setEmail($email)
+    {
+        $this->email = $email;
     }
-    function setRol($rol){
-        $this->rol=$rol;
+    function setRol($rol)
+    {
+        $this->rol = $rol;
+    }
+
+    static function loginUsuario($emailIntroducido)
+    {
+        $conexion = conectar();
+
+        // Consulta SQL login
+        $sql = "select password, email, rol from discos where email = :email";
+
+        $stmt = $conexion->prepare($sql);
+
+        // vincular parámetros     
+        $stmt->bindParam(':email',  $emailIntroducido);
+
+        $stmt->execute();
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if($resultados == null){
+            echo 'No se ha encontrado el usuario';
+        }else{
+            return $resultados;
+        }
     }
 }
-
-
-?>
