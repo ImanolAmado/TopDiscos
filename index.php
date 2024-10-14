@@ -3,7 +3,8 @@ session_start();
 if(isset($_SESSION['email'])){
    header("Location:welcome.php");
 }
-if($_SERVER["REQUEST_METHOD"=="POST"]){
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
     session_destroy();
     header("Location:index.php");
     exit();
