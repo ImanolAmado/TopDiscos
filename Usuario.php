@@ -47,10 +47,6 @@ Class Usuario{
     function setRol($rol){
         $this->rol=$rol;
     }
-
-
-
-
 }
 
 
