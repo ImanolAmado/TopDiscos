@@ -15,8 +15,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $emailIntroducido =  $_POST['email'];
         } else echo "Formato de email incorrecto";
 
-
-        $passIntroducido = limpiarPassword($_POST['pass']);        
+        $passIntroducido = $_POST['pass'];      
         
         // para hashear contraseñas:
         // https://onlinephp.io/password-hash    
@@ -26,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $passwordEncontrado = $resultados['password'];
         $emailEncontrado = $resultados['email'];
         $rolEncontrado = $resultados['rol'];
-        $usuarioEncontrado = $resultados['usuario'];
+        $usuarioEncontrado = $resultados['nombre'];
 
         
         if (password_verify($passIntroducido,$passwordEncontrado)){                        
@@ -50,17 +49,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         }    
     }
 
-
-    function limpiarPassword ($pass){
-        // limpiamos de etiquetas
-        $pass=strip_tags($pass);
-       
-        // limpiamos de caracteres especiales
-        $pass=htmlspecialchars($pass);       
-
-        return $pass;
-    }
-    
    
-
-}
