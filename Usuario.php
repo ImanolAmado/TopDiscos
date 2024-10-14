@@ -67,7 +67,7 @@ class Usuario
         $conexion = conectar();
 
         // Consulta SQL login
-        $sql = "select password, email, rol, usuario from usuario where email = :email";
+        $sql = "select password, email, rol, nombre from usuario where email = :email";
 
         $stmt = $conexion->prepare($sql);
 
