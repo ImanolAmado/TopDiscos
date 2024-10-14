@@ -10,8 +10,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         echo "¡Error! Ningún campo del login puede estra vacío";   
               
     } else {
-        $emailIntroducido = $_POST['email'];
-        $passIntroducido = $_POST['pass'];        
+
+        if(emailValido($_POST['email'])){
+            $emailIntroducido =  $_POST['email'];
+        } else echo "Formato de email incorrecto";
+
+
+        $passIntroducido = limpiarPassword($_POST['pass']);        
         
         // para hashear contraseñas:
         // https://onlinephp.io/password-hash    
@@ -22,14 +27,38 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $emailEncontrado = $resultados['email'];
         $rolEncontrado = $resultados['rol'];
 
-
         
         if (password_verify($passIntroducido,$passwordEncontrado)){                        
-            // $_SESSION['email']=$_POST['email'];
-            //header("Location: welcome.php");     
-            //exit();            
-            echo "todo ok";
-
+            $_SESSION['email']=$emailEncontrado;
+            header("Location: welcome.php");    
+            exit();     
+           
         } else echo "Lo siento password no coinciden";         
     }
+
+
+    /////////////////// FUNCIONES ///////////////////
+
+    function emailValido($email){
+        $email=htmlspecialchars($email);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return true;
+        } else {                
+            return false;
+        }    
+    }
+
+
+    function limpiarPassword ($pass){
+        // limpiamos de etiquetas
+        $pass=strip_tags($pass);
+       
+        // limpiamos de caracteres especiales
+        $pass=htmlspecialchars($pass);       
+
+        return $pass;
+    }
+    
+   
+
 }
