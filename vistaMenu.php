@@ -1,4 +1,4 @@
-
+<!-- Menú de navegación con bootstrap -->
 
 <div class="row">
     <div class="col-lg-6"><h1>Mi web de discos</h1></div>
@@ -26,7 +26,7 @@
                         </li>
                         <li class='nav-item'>
                         <a class='nav-link' href='gestionarUsuarios.php'>Gestionar Usuarios</a>
-                        </li>";      
+                        </li>";    
                        
                 } ?>
 
