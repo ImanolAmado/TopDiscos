@@ -1,8 +1,11 @@
 <?php
 include_once "Disco.php";
 
-$disco = new Disco(
 
+
+
+
+$disco = new Disco(
     $disco = 0,
     $disco = "Slippery When Wet",
     $disco = "Bon Jovi",
