@@ -1,5 +1,6 @@
 <?php
 include_once "ConectorBBDD.php";
+include_once "Disco.php";
 
 class Usuario
 {
@@ -62,12 +63,16 @@ class Usuario
         $this->rol = $rol;
     }
 
+
+    ///////// FUNCIONES CRUD //////////////
+
+    // Login de usuario
     static function loginUsuario($emailIntroducido)
     {
         $conexion = conectar();
 
         // Consulta SQL login
-        $sql = "select password, email, rol, nombre from usuario where email = :email";
+        $sql = "select id_usuario, password, email, rol, nombre from usuario where email = :email";
 
         $stmt = $conexion->prepare($sql);
 
@@ -75,13 +80,53 @@ class Usuario
         $stmt->bindParam(':email',  $emailIntroducido);
 
         $stmt->execute();
-        $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if($resultados == null){
+        if($resultado == null){
             echo 'No se ha encontrado el usuario';
         }else{
-            return $resultados;
+            return $resultado;
         }
     }
+
+
+    // Listar los discos (puntuaciones) de un usuario
+
+    static function discosUsuario($id_usuario)
+    {
+        $conexion = conectar();
+
+        // Consulta SQL todos los discos de un usuario concreto
+        $sql = "select id_disco, titulo, interprete, fecha_publicacion, puntuacion, critica, ismn from disco".
+        " natural join disco_puntuacion natural join usuario".
+        " where usuario.id_usuario = :id_usuario";
+
+        $stmt = $conexion->prepare($sql);
+
+        // vincular parámetros     
+        $stmt->bindParam(':id_usuario',  $id_usuario);
+
+        $stmt->execute();        
+
+        $listaDiscos = array();
+
+        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+           
+            $disco = new Disco(
+
+            $disco = $row['id_disco'],
+            $disco = $row['titulo'],
+            $disco = $row['interprete'],
+            $disco = $row['critica'],
+            $disco = $row['fecha_publicacion'],
+            $disco = $row['puntuacion'],           
+            $disco = $row['ismn']             
+            );   
+
+            array_push($listaDiscos, $disco);                       
+        }        
+
+        return $listaDiscos;
+    }        
+
 }
