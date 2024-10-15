@@ -29,16 +29,16 @@ if(!isset($_SESSION['email'])){
             <div class="collapse navbar-collapse" id="opciones">   
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#Discos">Todos los dicos</a>
+                  <a class="nav-link" href="todosLosDiscos.php">Todos los discos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#puntuacion">Mis puntuaciones</a>
+                  <a class="nav-link" href="misPuntuaciones.php">Mis puntuaciones</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#Perfil">Mi perfil</a>
+                  <a class="nav-link" href="welcome.php">Mi perfil</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#Salir">Salir</a>
+                  <a class="nav-link" href="logout.php">Salir</a>
                 </li>           
               </ul>
             </div>
