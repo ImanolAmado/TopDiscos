@@ -7,7 +7,7 @@
     $password = 'pass';
 
     try {
-    $conexion = new PDO("mysql:host=$host;dbname=$nombreBBDD",$usuario,$password);
+    $conexion = new PDO("mysql:host=$host:3310;dbname=$nombreBBDD",$usuario,$password);
    
     return $conexion;  
 
