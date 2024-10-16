@@ -27,7 +27,33 @@ $listaDiscos=Disco::todosLosDiscos();
     
   <!-- Incluímos el menú -->
     <?php include_once "vistaMenu.php";?>
-    <?php var_dump($listaDiscos);?>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Titulo</th>
+      <th scope="col">Interprete</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Puntuación</th>
+      <th scope="col">Crítica</th>
+    </tr>
+  </thead>
+  <tbody>
+   <?php
+  // Se van creando las celdas en cada iteracción
+    foreach($listaDiscos as $disco){
+    echo '<tr>
+      <td scope="row">'.$disco->getTitulo().'</td>
+      <td>'.$disco->getInterprete().'</td>
+      <td>'.$disco->getFecha_publicacion().'</td>
+      <td>'.$disco->getPuntuacion().'</td>
+      <td>'.$disco->getCritica().'</td>      
+    </tr>
+    <tr>';    
+    }
+   ?>    
+  </tbody>
+</table> 
 
     <?php include_once "vistaFooter.php";?>
 

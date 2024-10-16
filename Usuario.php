@@ -21,7 +21,7 @@ class Usuario
 
     //Getters y Setters
 
-    function getI_usuario()
+    function getId_usuario()
     {
         return $this->id_usuario;
     }
@@ -97,9 +97,10 @@ class Usuario
         $conexion = conectar();
 
         // Consulta SQL todos los discos de un usuario concreto
-        $sql = "select id_disco, titulo, interprete, fecha_publicacion, puntuacion, critica, ismn from disco".
-        " natural join disco_puntuacion natural join usuario".
-        " where usuario.id_usuario = :id_usuario";
+        $sql = "select disco.id_disco, disco.titulo, disco.interprete, disco.fecha_publicacion, disco_puntuacion.puntuacion, disco.critica, disco.ismn from  disco
+        left join disco_puntuacion on disco.id_disco = disco_puntuacion.id_disco and disco_puntuacion.id_usuario = :id_usuario where disco.id_disco is not null
+        order by disco_puntuacion.puntuacion desc";
+               
 
         $stmt = $conexion->prepare($sql);
 
@@ -128,5 +129,58 @@ class Usuario
 
         return $listaDiscos;
     }        
+
+    // Función que devuelve todos los usuarios
+
+    static function todosLosUsuarios()
+    {
+     $conexion = conectar();
+
+     // Consulta SQL todos los discos de un usuario concreto
+     $sql = "select * from usuario";
+
+     $stmt = $conexion->prepare($sql);
+
+     $stmt->execute();
+     $listaUsuarios = array();
+
+     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        
+         $usuario = new Usuario(
+
+         $id_usuario = $row['id_usuario'],
+         $nombre = $row['nombre'],
+         $password = $row['password'],
+         $email = $row['email'],
+         $rol = $row['rol'],
+
+         );   
+
+         array_push($listaUsuarios, $usuario);                       
+     }        
+
+     return $listaUsuarios;
+ }
+
+ // Función que inserta un usuario en la BBDD
+ static function insertarUsuario(Usuario $usuario)
+ {
+    $conexion = conectar();
+
+     // Sentencia SQL para insertar un disco nuevo
+     $sql = "insert into usuario (nombre, password, email, rol)".
+     " values(:nombre, :password, :email, :rol)";
+
+     $stmt = $conexion->prepare($sql);
+     
+     // vincular parámetros     
+     $stmt->bindParam(':nombre', $usuario->nombre);
+     $stmt->bindParam(':password', $usuario->password);
+     $stmt->bindParam(':email', $usuario->email);
+     $stmt->bindParam(':rol', $usuario->rol);
+     
+     $stmt->execute();    
+
+ }
 
 }

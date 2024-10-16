@@ -25,7 +25,7 @@
                         <a class='nav-link' href='gestionarDiscos.php'>Gestionar Discos</a>
                         </li>
                         <li class='nav-item'>
-                        <a class='nav-link' href='gestionarUsuarios.php'>Gestionar Usuarios</a>
+                        <a class='nav-link' href='todosLosUsuarios.php'>Gestionar Usuarios</a>
                         </li>";    
                        
                 } ?>
