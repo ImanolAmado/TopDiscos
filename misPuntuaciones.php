@@ -13,6 +13,7 @@ if(!isset($_SESSION['email'])){
 // de los discos que el usuario a votado
 $conexion = conectar();
 $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,43 +42,35 @@ $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
   <tbody>
    <?php
   // Se van creando las celdas en cada iteracción
-    foreach($listaDiscos as $disco){
-    echo '<tr>
-      <td scope="row">'.$disco->getTitulo().'</td>
-      <td>'.$disco->getInterprete().'</td>
-      <td>'.$disco->getFecha_publicacion().'</td>
-      <td>'.$disco->getPuntuacion().'</td> 
+    foreach($listaDiscos as $disco){ ?>
+    <tr>
+      <td scope="row"><?php echo $disco->getTitulo() ?></td>
+      <td> <?php echo $disco->getInterprete() ?></td>
+      <td> <?php echo $disco->getFecha_publicacion() ?></td>
+      <td> 
+        <!-- Si la puntuación es 0, imprimimos mensaje "Sin puntuar" -->
+        <?php if ($disco->getPuntuacion()==0){
+          echo 'Sin puntuar';          
+        } else echo $disco->getPuntuacion() ?>
+      </td> 
       <td>        
+      <form id="formu" method="post" action="updatePuntuaciones.php">  
         <select id="puntos" name="puntos">
-          <option value="1"'; if($disco->getPuntuacion()==1){echo'selected';} echo'>1</option>
-          <option value="2"'; if($disco->getPuntuacion()==2){echo'selected';} echo'>2</option>
-          <option value="3"'; if($disco->getPuntuacion()==3){echo'selected';} echo'>3</option>
-          <option value="4"'; if($disco->getPuntuacion()==4){echo'selected';} echo'>4</option>
-          <option value="5"'; if($disco->getPuntuacion()==5){echo'selected';} echo'>5</option>
-        </select>  
-        <form id="formu" method="post" action="updatePuntuaciones.php">
-          <input id="id_usuario" name="id_usuario" type="hidden" value="'.$_SESSION['id_usuario'].'">
-          <input id="id_puntuacion" name="id_puntuacion" type="hidden" value="'.$disco->getPuntuacion().'">
-          <input id="id_disco" name="id_disco" type="hidden" value="'.$disco->getId_disco().'">
+          <option value="1"<?php if($disco->getPuntuacion()==1){echo'selected';} ?>>1</option>
+          <option value="2"<?php if($disco->getPuntuacion()==2){echo'selected';} ?>>2</option>
+          <option value="3"<?php if($disco->getPuntuacion()==3){echo'selected';} ?>>3</option>
+          <option value="4"<?php if($disco->getPuntuacion()==4){echo'selected';} ?>>4</option>
+          <option value="5"<?php if($disco->getPuntuacion()==5){echo'selected';} ?>>5</option>
+        </select>           
+          <input id="id_disco" name="id_disco" type="hidden" value="<?php echo $disco->getId_disco()?>">        
           <input type="submit" value ="Enviar">          
         </form>
       </td>
     </tr>
-    <tr>';    
-    }
+    <tr>   
+  <?php }
    ?>    
   </tbody>
 </table> 
 
     <?php include_once "vistaFooter.php";?>
-
-    
-
- 
- 
-
-
-
-
-
-

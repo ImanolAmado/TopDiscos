@@ -130,7 +130,7 @@ function setIsmn($ismn){
      return $listaDiscos;
  }
 
-
+ 
  // Función que inserta un disco en la BBDD
  static function insertarDisco(Disco $disco)
  {
@@ -152,5 +152,75 @@ function setIsmn($ismn){
      $stmt->execute();    
 
  }
+
+  // Función que actualiza la puntuación de un disco por un usuario
+  static function updatePuntuacion($id_usuario, $id_disco, $puntuacion){
+
+    $conexion = conectar();
+
+     // Sentencia SQL para actualizar
+     $sql = "update disco_puntuacion set puntuacion=:puntuacion where id_usuario=:id_usuario and id_disco=:id_disco";
+     $stmt = $conexion->prepare($sql);
+     
+     // vincular parámetros     
+     $stmt->bindParam(':id_usuario', $id_usuario);
+     $stmt->bindParam(':id_disco', $id_disco);
+     $stmt->bindParam(':puntuacion', $puntuacion);
+
+     $stmt->execute();  
+  }
+
+  // Función para saber si existe un registro en la tabla disco_puntuación
+  // devuelve true o false
+
+  public static function consultaRegistro($id_usuario, $id_disco){
+
+    $conexion = conectar();
+
+     // Sentencia SQL para actualizar
+     $sql = "select id_usuario, id_disco from disco_puntuacion where id_usuario=:id_usuario and id_disco=:id_disco";
+     $stmt = $conexion->prepare($sql);
+     
+     // vincular parámetros     
+     $stmt->bindParam(':id_usuario', $id_usuario);
+     $stmt->bindParam(':id_disco', $id_disco);
+
+     $stmt->execute();  
+     $usuario=0;
+     
+     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        
+        $usuario = $row['id_usuario'];
+      
+     }
+      
+     if($usuario == null){
+            return false;
+        }else{
+            return true;
+        }
+     
+    }
+
+    // Función para insertar un registro NUEVO en disco_puntuacion
+
+    public static function insertPuntuacion($id_usuario, $id_disco, $puntuacion){
+
+        $conexion = conectar();
+
+        // Sentencia SQL para insertar un disco nuevo
+        $sql = "insert into disco_puntuacion (id_usuario, id_disco, puntuacion)".
+        " values(:id_usuario, :id_disco, :puntuacion)";
+   
+        $stmt = $conexion->prepare($sql);
+        
+        // vincular parámetros     
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':id_disco', $id_disco);
+        $stmt->bindParam(':puntuacion', $puntuacion);
+           
+        $stmt->execute();    
+    }
+
 
 }
