@@ -19,24 +19,24 @@ if(!isset($_SESSION['email'])){
     <title>Document</title>
 </head>
 <body>
-
+ 
     <!-- Insertamos menú -->
     <?php include_once "vistaMenu.php";?>
 
-    <h3>Añadir nuevo usuario</h3>
-    <form class="registroNuevo" method="post" action="procesarUsuario.php"> 
-        
-        <label>Introducir datos</label><br><br>
-
+    <h3>Añadir nuevo usuario</h3><br><br> 
+    <form class="registroNuevo" method="post" action="procesarUsuario.php">   
           <label for="nombre">Nombre: </label><br>
-          <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
-          <label for="password">Contraseña: </label><br>
-          <input type="text" id="password" name="password" placeholder="Introduzca la contraseña"><br>
+          <input type="text" id="nombre" name="nombre" placeholder="nombre usuario"><br>
           <label for="email">Email: </label><br>
-          <input type="email" id="email" name="email" placeholder="Email"><br>
-          <label for="rol">Rol:</label><br>
-          <input type="text" id="rol" name="rol" placeholder="Rol"><br>         
-
+          <input type="text" id="email" name="email" placeholder="email"><br>
+          <label for="passw">password </label><br>
+          <input type="text" id="pass" name="pass" placeholder="password"><br><br>
+          <label for="rol">Rol del usuario</label>
+              <select id="rol" name="rol">
+                <option value="1">Usuario</option>
+                <option value="2">Admin</option>                
+              </select>
+          <br><br>  
         <input type="submit" value ="Enviar">
     </form>    
 
