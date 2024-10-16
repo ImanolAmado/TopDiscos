@@ -208,7 +208,7 @@ function setIsmn($ismn){
 
         $conexion = conectar();
 
-        // Sentencia SQL para insertar un disco nuevo
+        // Sentencia SQL para insertar registro en disco_puntuacion
         $sql = "insert into disco_puntuacion (id_usuario, id_disco, puntuacion)".
         " values(:id_usuario, :id_disco, :puntuacion)";
    

@@ -48,17 +48,17 @@ $listaUsuarios=Usuario::todosLosUsuarios();
   <tbody>     
     <?php       
     // Se van creando las celdas en cada iteracción
-    foreach($listaUsuarios as $usuario){
-    echo '<tr>
-      <td scope="row">'.$usuario->getId_usuario().'</td>
-      <td>'.$usuario->getRol().'</td>
-      <td>'.$usuario->getNombre().'</td>
-      <td>'.$usuario->getEmail().'</td>
-      <td>'.$usuario->getPassword().'</td>
+    foreach($listaUsuarios as $usuario){ ?>
+    <tr>
+      <td scope="row"><?php $usuario->getId_usuario() ?></td>
+      <td><?php $usuario->getRol() ?></td>
+      <td><?php $usuario->getNombre() ?></td>
+      <td><?php $usuario->getEmail() ?></td>
+      <td><?php $usuario->getPassword() ?></td>
       <td>Vacio de momento</td>
     </tr>
-    <tr>';    
-    }   
+    <tr>
+    <?php }   
     ?>
   </tbody>
 </table> 
