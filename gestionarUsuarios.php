@@ -14,6 +14,8 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="../CSS/style.css" rel="stylesheet" type="text/css" />
+
     <title>Document</title>
 </head>
 <body>
@@ -26,16 +28,14 @@ if(!isset($_SESSION['email'])){
         
         <label>Introducir datos</label><br><br>
 
-          <label for="titulo">Título: </label><br>
-          <input type="text" id="titulo" name="titulo" placeholder="título del disco"><br>
-          <label for="interprete">Interprete: </label><br>
-          <input type="text" id="interprete" name="interprete" placeholder="interprete o grupo"><br>
-          <label for="fecha">Fecha publicación: </label><br>
-          <input type="date" id="fecha" name="fecha" placeholder="fecha"><br>
-          <label for="ismn">ISMN (formato xxx-x-xxxx-xxxx-x) </label><br>
-          <input type="text" id="ismn" name="ismn" placeholder="número ismn"><br>
-          <label for="critica">Crítica: </label><br>
-          <textarea id="critica" name="critica" rows="5" cols="40"></textarea><br><br>          
+          <label for="nombre">Nombre: </label><br>
+          <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
+          <label for="password">Contraseña: </label><br>
+          <input type="text" id="password" name="password" placeholder="Introduzca la contraseña"><br>
+          <label for="email">Email: </label><br>
+          <input type="email" id="email" name="email" placeholder="Email"><br>
+          <label for="rol">Rol:</label><br>
+          <input type="text" id="rol" name="rol" placeholder="Rol"><br>         
 
         <input type="submit" value ="Enviar">
     </form>    

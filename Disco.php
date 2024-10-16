@@ -97,9 +97,8 @@ function setIsmn($ismn){
      $conexion = conectar();
 
      // Consulta SQL todos los discos de un usuario concreto
-     $sql = "select disco.id_disco, disco.titulo, disco.interprete, disco.fecha_publicacion, 
-     avg(disco_puntuacion.puntuacion) as puntuacion, disco.critica, disco.ismn from disco 
-     left join disco_puntuacion on disco.id_disco = disco_puntuacion.id_disco group by (id_disco)";
+     $sql = "select id_disco, titulo, interprete, fecha_publicacion, avg(puntuacion) as puntuacion,". 
+     " critica, ismn from disco natural join disco_puntuacion group by (id_disco)";
 
      $stmt = $conexion->prepare($sql);
 
@@ -152,5 +151,22 @@ function setIsmn($ismn){
      $stmt->execute();    
 
  }
+
+ static function comprobacionIsmn($ismn){
+    $conexion = conectar();
+    $sql = "select ismn from disco where ismn = :ismn";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+       $encontrado =  $row['ismn'];
+    }
+    if($encontrado == null){
+        return false;
+    }else{
+        return true;
+    }
+
+}
 
 }
