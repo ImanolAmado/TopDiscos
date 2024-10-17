@@ -15,10 +15,9 @@ if(!isset($_SESSION['email'])){
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../CSS/style.css" rel="stylesheet" type="text/css" />
 
-    <title>Document</title>
+    <title>Principal</title>
 </head>
-<body>
-    
+<body>    
 
   <!-- Incluímos el menú -->
     <?php include_once "vistaMenu.php";?>
@@ -28,4 +27,5 @@ if(!isset($_SESSION['email'])){
     <h6><b>Email: </b><?php echo $_SESSION['email']?></h6>
     <h6><b>Role: </b><?php echo $_SESSION['rol']?></h6>
 
+        
     <?php include_once "vistaFooter.php";?>

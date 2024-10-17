@@ -1,6 +1,9 @@
 <!-- Footer que incluye las librerías javaScript de Boostrap -->
 
 <footer>
+        <br>
+        <br>
+        <br>
         <h6>2024 Usurbil lanbide eskola</h6>
     </footer>
 </div>

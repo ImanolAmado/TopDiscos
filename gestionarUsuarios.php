@@ -39,5 +39,5 @@ if(!isset($_SESSION['email'])){
           <br><br>  
         <input type="submit" value ="Enviar">
     </form>    
-
+   
     <?php include_once "vistaFooter.php";?>

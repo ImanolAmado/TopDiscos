@@ -1,4 +1,5 @@
 <!-- Menú de navegación con bootstrap -->
+<br><br>
 <div class="container">
 <div class="row">
     <div class="col-lg-6"><h1>Mi web de discos</h1></div>

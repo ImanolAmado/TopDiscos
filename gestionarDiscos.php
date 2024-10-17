@@ -40,7 +40,7 @@ if(!isset($_SESSION['email'])){
           <textarea id="critica" name="critica" rows="5" cols="40"></textarea><br><br>          
 
         <input type="submit" value ="Enviar">
-    </form>    
-
+    </form><br><br>   
+    
     <?php include_once "vistaFooter.php";?>
 

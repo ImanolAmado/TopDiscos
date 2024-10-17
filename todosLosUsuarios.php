@@ -39,9 +39,10 @@ $listaUsuarios=Usuario::todosLosUsuarios();
       <th scope="col" style="width:5%">Id</th>
       <th scope="col" style="width:10%">Rol</th>
       <th scope="col" style="width:20%">Nombre</th>
-      <th scope="col" style="width:20%">Email</th>
+      <th scope="col" style="width:15%">Email</th>
       <th scope="col" style="width:30%">Password</th>
-      <th scope="col" style="width:15%">Acciones</th>
+      <th scope="col" style="width:10%">Acciones</th>
+      <th scope="col" style="width:10%"></th>
     </tr>
     </tr>
   </thead>
@@ -50,17 +51,36 @@ $listaUsuarios=Usuario::todosLosUsuarios();
     // Se van creando las celdas en cada iteracción
     foreach($listaUsuarios as $usuario){ ?>
     <tr>
-      <td scope="row"><?php $usuario->getId_usuario() ?></td>
-      <td><?php $usuario->getRol() ?></td>
-      <td><?php $usuario->getNombre() ?></td>
-      <td><?php $usuario->getEmail() ?></td>
-      <td><?php $usuario->getPassword() ?></td>
-      <td>Vacio de momento</td>
+      <td scope="row"><?php echo $usuario->getId_usuario(); ?></td>
+      <td><?php echo $usuario->getRol(); ?></td>
+      <td><?php echo $usuario->getNombre(); ?></td>
+      <td><?php echo $usuario->getEmail(); ?></td>
+      <td><?php echo $usuario->getPassword(); ?></td>
+      <td>
+        <form id="f1" method="post" action="procesarBorrarUsuario.php">
+          <input type="hidden" id="id" name="id" value="<?php echo $usuario->getId_usuario(); ?>">
+          <input type="hidden" id="rol" name="rol" value="<?php echo $usuario->getRol(); ?>">
+          <input type="hidden" id="nombre" name="nombre" value="<?php echo $usuario->getNombre(); ?>">
+          <input type="hidden" id="email" name="email" value="<?php echo $usuario->getEmail(); ?>">
+          <input type="hidden" id="password" name="password" value="<?php echo $usuario->getPassword() ?>">
+          <input type="submit" value ="Eliminar">
+        </form>
+    </td>
+      <td>
+        <form id="f2" method="post" action="editarUsuario">
+          <input type="hidden" id="id" name="id" value="<?php echo $usuario->getId_usuario(); ?>">
+          <input type="hidden" id="rol" name="rol" value="<?php echo $usuario->getRol(); ?>">
+          <input type="hidden" id="nombre" name="nombre" value="<?php echo $usuario->getNombre(); ?>">
+          <input type="hidden" id="email" name="email" value="<?php echo $usuario->getEmail(); ?>">
+          <input type="hidden" id="password" name="password" value="<?php echo $usuario->getPassword() ?>">
+          <input type="submit" value ="Editar">
+        </form>
+      </td>      
     </tr>
     <tr>
     <?php }   
     ?>
   </tbody>
-</table> 
+</table>
 
     <?php include_once "vistaFooter.php";?>

@@ -13,7 +13,6 @@ if(!isset($_SESSION['email'])){
 // de los discos que el usuario a votado
 $conexion = conectar();
 $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
-
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Mis puntuaciones</title>
 </head>
 <body>
     
@@ -71,6 +70,6 @@ $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
   <?php }
    ?>    
   </tbody>
-</table> 
+</table><br><br>
 
-    <?php include_once "vistaFooter.php";?>
+<?php include_once "vistaFooter.php";?>
