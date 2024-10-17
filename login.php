@@ -3,6 +3,7 @@ include_once "Usuario.php";
 
 session_start();
 
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){    
     
     if(empty ($_POST['email']) || empty ($_POST['pass'])){
@@ -12,36 +13,43 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     } else {
 
         if(emailValido($_POST['email'])){
-            $emailIntroducido =  $_POST['email'];
-        } else echo "Formato de email incorrecto";
-
-        $passIntroducido = $_POST['pass'];      
         
-        // para hashear contraseñas:
-        // https://onlinephp.io/password-hash    
+            $emailIntroducido =  $_POST['email'];          
+       
+            $passIntroducido = $_POST['pass'];      
+        
+            // para hashear contraseñas:
+            // https://onlinephp.io/password-hash    
 
-        $resultados = Usuario::loginUsuario($emailIntroducido);
+            $resultado = Usuario::loginUsuario($emailIntroducido);
 
-        $passwordEncontrado = $resultados['password'];
-        $emailEncontrado = $resultados['email'];
-        $rolEncontrado = $resultados['rol'];
-        $usuarioEncontrado = $resultados['nombre'];
-        $idEncontrado = $resultados['id_usuario'];
+            // Si resultado es null, email no existe en la BBDD
+            if($resultado!=null){
+
+                $passwordEncontrado = $resultado['password'];
+                $emailEncontrado = $resultado['email'];
+                $rolEncontrado = $resultado['rol'];
+                $usuarioEncontrado = $resultado['nombre'];
+                $idEncontrado = $resultado['id_usuario'];
 
         
-        if (password_verify($passIntroducido,$passwordEncontrado)){                        
-            $_SESSION['email']=$emailEncontrado;
-            $_SESSION['usuario']=$usuarioEncontrado;
-            $_SESSION['id_usuario']=$idEncontrado;
-            $_SESSION['rol']=$rolEncontrado;
+                if (password_verify($passIntroducido,$passwordEncontrado)){                        
+                    $_SESSION['email']=$emailEncontrado;
+                    $_SESSION['usuario']=$usuarioEncontrado;
+                    $_SESSION['id_usuario']=$idEncontrado;
+                    $_SESSION['rol']=$rolEncontrado;
 
-            header("Location: welcome.php");    
-            exit();     
+                    header("Location: welcome.php");    
+                    exit();     
            
-        } else echo "Lo siento password no coinciden";         
-    }
+                } else echo "Lo siento password no coincide";  
 
+            } else echo "No existe ese email en la base de datos";
+        
+        } else echo "Formato de email incorrecto";
+    }
 }
+
     /////////////////// FUNCIONES ///////////////////
 
     function emailValido($email){
