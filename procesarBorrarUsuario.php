@@ -16,6 +16,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $rol = $_POST['rol'];    
+
+    $_SESSION['registroABorrar'] = $_POST['id'];
 }
 ?>
 
@@ -41,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <h5>Email: <?php echo $email ?></h5>
     <h5>Rol: <?php echo $rol ?></h5><br>
 
-    <button><a href="gestionarUsuarios.php" style="text-decoration: none; color:black">Cancelar</a></button>  
+    <button><a href="todosLosUsuarios.php" style="text-decoration: none; color:black">Cancelar</a></button>  
     <button><a href="borrarUsuario.php" style="text-decoration: none; color:black;">Aceptar</a></button><br><br> 
     
     

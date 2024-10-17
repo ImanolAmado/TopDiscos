@@ -115,6 +115,7 @@ function setIsmn($ismn){
          $disco = $row['interprete'],
          $disco = $row['critica'],
          $disco = $row['fecha_publicacion'],
+         
 
          // La media de la puntuación puede ser un número decimal.
          // Hay que redonderar la cifra, hacia arriba o hacia abajo
@@ -173,7 +174,7 @@ function setIsmn($ismn){
   // Función para saber si existe un registro en la tabla disco_puntuación
   // devuelve true o false
 
-  public static function consultaRegistro($id_usuario, $id_disco){
+  static function consultaRegistro($id_usuario, $id_disco){
 
     $conexion = conectar();
 
@@ -204,7 +205,7 @@ function setIsmn($ismn){
 
     // Función para insertar un registro NUEVO en disco_puntuacion
 
-    public static function insertPuntuacion($id_usuario, $id_disco, $puntuacion){
+    static function insertPuntuacion($id_usuario, $id_disco, $puntuacion){
 
         $conexion = conectar();
 
@@ -221,6 +222,37 @@ function setIsmn($ismn){
            
         $stmt->execute();    
     }
+
+
+    // Función que comprueba la existencia de un ismn en la BBDD
+    static function comprobarIsmn($ismn){
+
+        $conexion = conectar();
+    
+         // Sentencia SQL para buscar ismn
+         $sql = "select ismn from disco where ismn=:ismn";
+         $stmt = $conexion->prepare($sql);
+         
+         // vincular parámetros     
+         $stmt->bindParam(':ismn', $ismn);       
+    
+         $stmt->execute();  
+         $ismnEncontrado="";
+         
+         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+            
+            $ismnEncontrado = $row['ismn'];
+          
+         }
+          
+         if($ismnEncontrado == ""){
+                return false;
+            }else{
+                return true;
+            }
+         
+        }
+    
 
 
 }

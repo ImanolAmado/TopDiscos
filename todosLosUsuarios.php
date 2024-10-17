@@ -27,7 +27,7 @@ $listaUsuarios=Usuario::todosLosUsuarios();
     
   <!-- Incluímos el menú -->
     <?php include_once "vistaMenu.php";?><br>
-
+ 
  <a class="btn btn-primary" href="gestionarUsuarios.php" role="button">Añadir usuario</a>
 
   <!-- Tabla bootstrap -->
@@ -39,10 +39,10 @@ $listaUsuarios=Usuario::todosLosUsuarios();
       <th scope="col" style="width:5%">Id</th>
       <th scope="col" style="width:10%">Rol</th>
       <th scope="col" style="width:20%">Nombre</th>
-      <th scope="col" style="width:15%">Email</th>
-      <th scope="col" style="width:30%">Password</th>
-      <th scope="col" style="width:10%">Acciones</th>
-      <th scope="col" style="width:10%"></th>
+      <th scope="col" style="width:20%">Email</th>
+      <th scope="col" style="width:35%">Password</th>
+      <th scope="col" style="width:3%">Acciones</th>
+      <th scope="col" style="width:3%"></th>
     </tr>
     </tr>
   </thead>
@@ -63,7 +63,7 @@ $listaUsuarios=Usuario::todosLosUsuarios();
           <input type="hidden" id="nombre" name="nombre" value="<?php echo $usuario->getNombre(); ?>">
           <input type="hidden" id="email" name="email" value="<?php echo $usuario->getEmail(); ?>">
           <input type="hidden" id="password" name="password" value="<?php echo $usuario->getPassword() ?>">
-          <input type="submit" value ="Eliminar">
+          <button type="submit" ><img src="img/bin.png" width="20px" height="20px" alt="Foto eliminar"></button> 
         </form>
     </td>
       <td>
@@ -73,7 +73,7 @@ $listaUsuarios=Usuario::todosLosUsuarios();
           <input type="hidden" id="nombre" name="nombre" value="<?php echo $usuario->getNombre(); ?>">
           <input type="hidden" id="email" name="email" value="<?php echo $usuario->getEmail(); ?>">
           <input type="hidden" id="password" name="password" value="<?php echo $usuario->getPassword() ?>">
-          <input type="submit" value ="Editar">
+          <button type="submit" ><img src="img/editar.png" width="20px" height="20px" alt="Foto editar"></button> 
         </form>
       </td>      
     </tr>
