@@ -5,7 +5,7 @@
     <div class="col-lg-6"><h1>Mi web de discos</h1></div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
         <nav class="navbar navbar-expand-lg navbar-light " >
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
               <span class="navbar-toggler-icon"></span>

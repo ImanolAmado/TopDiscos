@@ -26,7 +26,7 @@ $listaDiscos=Usuario::discosUsuario($_SESSION['id_usuario']);
 <body>
     
   <!-- Incluímos el menú -->
-    <?php include_once "vistaMenu.php";?>
+    <?php include_once "vistaMenu.php";?><br>
     
     <table class="table">
   <thead>

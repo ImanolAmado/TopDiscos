@@ -16,16 +16,16 @@ if(!isset($_SESSION['email'])){
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- <link href="../CSS/style.css" rel="stylesheet" type="text/css" /> -->
 
-    <title>Document</title>
+    <title>Gestionar usuario</title>
 </head>
 <body>
  
     <!-- Insertamos menú -->
     <?php include_once "vistaMenu.php";?>
-
+    
     <h3>Añadir nuevo usuario</h3><br> 
     <form class="registroNuevo" method="post" action="procesarUsuario.php">   
-          <label for="nombre">Nombre: </label><br>
+    <label for="nombre">Nombre: </label><br>
           <input type="text" id="nombre" name="nombre" placeholder="nombre usuario" required><br>
           <label for="email">Email: </label><br>
           <input type="text" id="email" name="email" placeholder="email" required><br>
@@ -39,5 +39,6 @@ if(!isset($_SESSION['email'])){
           <br><br>  
         <input type="submit" value ="Enviar">
     </form>    
+    
    
     <?php include_once "vistaFooter.php";?>

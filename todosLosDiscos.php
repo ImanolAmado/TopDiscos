@@ -26,14 +26,14 @@ $listaDiscos=Disco::todosLosDiscos();
 <body>
     
   <!-- Incluímos el menú -->
-    <?php include_once "vistaMenu.php";?>
+    <?php include_once "vistaMenu.php";?><br>
 
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">Titulo</th>
-      <th scope="col">Interprete</th>
-      <th scope="col">Fecha</th>
+      <th scope="col" style="width:10%" >Titulo</th>
+      <th scope="col" style="width:10%">Interprete</th>
+      <th scope="col" style="width:8%">Fecha</th>
       <th scope="col">Puntuación</th>
       <th scope="col">Crítica</th>
     </tr>
