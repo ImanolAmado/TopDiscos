@@ -16,7 +16,7 @@ if(!isset($_SESSION['email'])){
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../CSS/style.css" rel="stylesheet" type="text/css" />
 
-    <title>Document</title>
+    <title>Nuevo disco</title>
 </head>
 <body>
 
@@ -29,15 +29,15 @@ if(!isset($_SESSION['email'])){
         <label>Introducir datos</label><br><br>
 
           <label for="titulo">Título: </label><br>
-          <input type="text" id="titulo" name="titulo" placeholder="título del disco"><br>
+          <input type="text" id="titulo" name="titulo" placeholder="título del disco" required><br>
           <label for="interprete">Interprete: </label><br>
-          <input type="text" id="interprete" name="interprete" placeholder="interprete o grupo"><br>
+          <input type="text" id="interprete" name="interprete" placeholder="interprete o grupo" required><br>
           <label for="fecha">Fecha publicación: </label><br>
-          <input type="date" id="fecha" name="fecha" placeholder="fecha"><br>
+          <input type="date" id="fecha" name="fecha" placeholder="fecha" required><br>
           <label for="ismn">ISMN (formato xxx-x-xxxx-xxxx-x) </label><br>
-          <input type="text" id="ismn" name="ismn" placeholder="número ismn"><br>
+          <input type="text" id="ismn" name="ismn" placeholder="número ismn" required><br>
           <label for="critica">Crítica: </label><br>
-          <textarea id="critica" name="critica" rows="5" cols="40"></textarea><br><br>          
+          <textarea id="critica" name="critica" rows="5" cols="40" required></textarea><br><br>          
 
         <input type="submit" value ="Enviar">
     </form><br><br>   

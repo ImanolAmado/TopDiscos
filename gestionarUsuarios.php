@@ -26,15 +26,15 @@ if(!isset($_SESSION['email'])){
     <h3>Añadir nuevo usuario</h3><br> 
     <form class="registroNuevo" method="post" action="procesarUsuario.php">   
           <label for="nombre">Nombre: </label><br>
-          <input type="text" id="nombre" name="nombre" placeholder="nombre usuario"><br>
+          <input type="text" id="nombre" name="nombre" placeholder="nombre usuario" required><br>
           <label for="email">Email: </label><br>
-          <input type="text" id="email" name="email" placeholder="email"><br>
+          <input type="text" id="email" name="email" placeholder="email" required><br>
           <label for="passw">password </label><br>
-          <input type="text" id="pass" name="pass" placeholder="password"><br><br>
+          <input type="text" id="pass" name="pass" placeholder="password" required><br><br>
           <label for="rol">Rol del usuario</label>
               <select id="rol" name="rol">
-                <option value="1">Usuario</option>
-                <option value="2">Admin</option>                
+                <option value="Usuario">Usuario</option>
+                <option value="Admin">Admin</option>                
               </select>
           <br><br>  
         <input type="submit" value ="Enviar">

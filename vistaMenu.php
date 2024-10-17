@@ -21,15 +21,14 @@
                   <a class="nav-link" href="misPuntuaciones.php">Mis puntuaciones</a>
                 </li>
               <!-- Si se ha logeado un admin... -->
-                <?php if($_SESSION['rol']=='admin'){
-                  echo "<li class='nav-item'>
-                        <a class='nav-link' href='gestionarDiscos.php'>Gestionar Discos</a>
+                <?php if($_SESSION['rol']=='admin'){ ?>
+                      <li class='nav-item'>
+                        <a class='nav-link' href='todosLosDiscosEdicion.php'>Gestionar Discos</a>
                         </li>
                         <li class='nav-item'>
                         <a class='nav-link' href='todosLosUsuarios.php'>Gestionar Usuarios</a>
-                        </li>";    
-                       
-                } ?>
+                      </li>                       
+                <?php } ?>
 
                 <li class="nav-item">
                   <a class="nav-link" href="welcome.php">Mi perfil</a>

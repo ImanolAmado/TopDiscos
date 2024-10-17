@@ -41,7 +41,6 @@ class Usuario
     {
         return $this->rol;
     }
-
     function setId_usuario($id_usuario)
     {
         $this->id_usuario = $id_usuario;
@@ -181,6 +180,45 @@ class Usuario
      
      $stmt->execute();    
 
+ }
+
+
+ static function eliminarUsuario($id_usuario){
+    
+    $conexion = conectar();
+
+    // Sentencia SQL para eliminar un usuario
+    $sql = "delete from usuario where id_usuario=:id_usuario";
+
+    $stmt = $conexion->prepare($sql);
+    
+    // vincular parámetros     
+    $stmt->bindParam(':id_usuario', $id_usuario);
+       
+    $stmt->execute();    
+
+ }
+
+ //Funcion que comprara los emails
+ static function compararEmails($email){
+    $conexion = conectar();
+
+    // Sentencia SQL para comparar emails
+    $sql = "select email from usuario where email = :email";
+    $stmt = $conexion->prepare($sql); 
+
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();  
+    $encontrado=0;
+
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $encontrado =  $row['email'];
+     }
+     if($encontrado == null){
+         return false;
+     }else{
+         return true;
+     }
  }
 
 }
