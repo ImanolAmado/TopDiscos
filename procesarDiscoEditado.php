@@ -62,14 +62,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $ismn
         );
 
-        /*
-        Disco::ModificarDisco($disco);
+        
+        Disco::modificarDisco($disco);
         header("Location:todosLosDiscosEdicion.php");
         exit();
-        */
-
-        var_dump($disco);
-
+    
         }
     }
 

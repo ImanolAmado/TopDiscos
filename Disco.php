@@ -267,10 +267,32 @@ function setIsmn($ismn){
         // vincular parámetros     
         $stmt->bindParam(':id_disco', $id_disco);
                
-        $stmt->execute();    
+        $stmt->execute();   
         
     }
-    
+
+    // Función que modifica un disco en la BBDD
+    static function modificarDisco(Disco $disco){
+       
+        $conexion = conectar();
+
+        // Sentencia SQL para modificar registro en disco
+        $sql = "update disco set titulo=:titulo, fecha_publicacion=:fecha_publicacion,
+        ismn=:ismn, critica=:critica, interprete=:interprete where id_disco=:id_disco";
+   
+        $stmt = $conexion->prepare($sql);
+        
+        // vincular parámetros     
+        $stmt->bindParam(':titulo', $disco->titulo);
+        $stmt->bindParam(':fecha_publicacion', $disco->fecha_publicacion);
+        $stmt->bindParam(':ismn', $disco->ismn);
+        $stmt->bindParam(':critica', $disco->critica);
+        $stmt->bindParam(':interprete', $disco->interprete);
+        $stmt->bindParam(':id_disco', $disco->id_disco);
+           
+        $stmt->execute();  
+
+    } 
 
 
 }
