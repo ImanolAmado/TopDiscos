@@ -37,10 +37,10 @@ $listaUsuarios=Usuario::todosLosUsuarios();
     <tr>
     <tr>
       <th scope="col" style="width:5%">Id</th>
-      <th scope="col" style="width:10%">Rol</th>
-      <th scope="col" style="width:20%">Nombre</th>
-      <th scope="col" style="width:20%">Email</th>
-      <th scope="col" style="width:35%">Password</th>
+      <th scope="col" style="width:15%">Rol</th>
+      <th scope="col" style="width:15%">Nombre</th>
+      <th scope="col" style="width:15%">Email</th>
+      <th scope="col" style="width:15%">Password</th>
       <th scope="col" style="width:3%">Acciones</th>
       <th scope="col" style="width:3%"></th>
     </tr>
@@ -55,7 +55,7 @@ $listaUsuarios=Usuario::todosLosUsuarios();
       <td><?php echo $usuario->getRol(); ?></td>
       <td><?php echo $usuario->getNombre(); ?></td>
       <td><?php echo $usuario->getEmail(); ?></td>
-      <td><?php echo $usuario->getPassword(); ?></td>
+      <td><?php echo "*************"; ?></td>
       <td>
         <form id="f1" method="post" action="procesarBorrarUsuario.php">
           <input type="hidden" id="id" name="id" value="<?php echo $usuario->getId_usuario(); ?>">
