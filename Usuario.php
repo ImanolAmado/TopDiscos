@@ -80,12 +80,9 @@ class Usuario
 
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($resultado == null) {
-            echo 'No se ha encontrado el usuario';
-        } else {
-            return $resultado;
-        }
+        
+        return $resultado;
+        
     }
 
 
