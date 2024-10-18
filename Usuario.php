@@ -80,10 +80,10 @@ class Usuario
 
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if($resultado == null){
+
+        if ($resultado == null) {
             echo 'No se ha encontrado el usuario';
-        }else{
+        } else {
             return $resultado;
         }
     }
@@ -99,126 +99,159 @@ class Usuario
         $sql = "select disco.id_disco, disco.titulo, disco.interprete, disco.fecha_publicacion, disco_puntuacion.puntuacion, disco.critica, disco.ismn from  disco
         left join disco_puntuacion on disco.id_disco = disco_puntuacion.id_disco and disco_puntuacion.id_usuario = :id_usuario where disco.id_disco is not null
         order by disco_puntuacion.puntuacion desc";
-               
+
 
         $stmt = $conexion->prepare($sql);
 
         // vincular parámetros     
         $stmt->bindParam(':id_usuario',  $id_usuario);
 
-        $stmt->execute();        
+        $stmt->execute();
 
         $listaDiscos = array();
 
-        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-           
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
             $disco = new Disco(
 
-            $disco = $row['id_disco'],
-            $disco = $row['titulo'],
-            $disco = $row['interprete'],
-            $disco = $row['critica'],
-            $disco = $row['fecha_publicacion'],
-            $disco = $row['puntuacion'],           
-            $disco = $row['ismn']             
-            );   
+                $disco = $row['id_disco'],
+                $disco = $row['titulo'],
+                $disco = $row['interprete'],
+                $disco = $row['critica'],
+                $disco = $row['fecha_publicacion'],
+                $disco = $row['puntuacion'],
+                $disco = $row['ismn']
+            );
 
-            array_push($listaDiscos, $disco);                       
-        }        
+            array_push($listaDiscos, $disco);
+        }
 
         return $listaDiscos;
-    }        
+    }
 
     // Función que devuelve todos los usuarios
 
     static function todosLosUsuarios()
     {
-     $conexion = conectar();
+        $conexion = conectar();
 
-     // Consulta SQL todos los discos de un usuario concreto
-     $sql = "select * from usuario";
+        // Consulta SQL todos los discos de un usuario concreto
+        $sql = "select * from usuario";
 
-     $stmt = $conexion->prepare($sql);
+        $stmt = $conexion->prepare($sql);
 
-     $stmt->execute();
-     $listaUsuarios = array();
+        $stmt->execute();
+        $listaUsuarios = array();
 
-     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        
-         $usuario = new Usuario(
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-         $id_usuario = $row['id_usuario'],
-         $nombre = $row['nombre'],
-         $password = $row['password'],
-         $email = $row['email'],
-         $rol = $row['rol'],
+            $usuario = new Usuario(
 
-         );   
+                $id_usuario = $row['id_usuario'],
+                $nombre = $row['nombre'],
+                $password = $row['password'],
+                $email = $row['email'],
+                $rol = $row['rol'],
 
-         array_push($listaUsuarios, $usuario);                       
-     }        
+            );
 
-     return $listaUsuarios;
- }
+            array_push($listaUsuarios, $usuario);
+        }
 
- // Función que inserta un usuario en la BBDD
- static function insertarUsuario(Usuario $usuario)
- {
-    $conexion = conectar();
+        return $listaUsuarios;
+    }
 
-     // Sentencia SQL para insertar un disco nuevo
-     $sql = "insert into usuario (nombre, password, email, rol)".
-     " values(:nombre, :password, :email, :rol)";
+    // Función que inserta un usuario en la BBDD
+    static function insertarUsuario(Usuario $usuario)
+    {
+        $conexion = conectar();
 
-     $stmt = $conexion->prepare($sql);
-     
-     // vincular parámetros     
-     $stmt->bindParam(':nombre', $usuario->nombre);
-     $stmt->bindParam(':password', $usuario->password);
-     $stmt->bindParam(':email', $usuario->email);
-     $stmt->bindParam(':rol', $usuario->rol);
-     
-     $stmt->execute();    
+        // Sentencia SQL para insertar un disco nuevo
+        $sql = "insert into usuario (nombre, password, email, rol)" .
+            " values(:nombre, :password, :email, :rol)";
 
- }
+        $stmt = $conexion->prepare($sql);
+
+        // vincular parámetros     
+        $stmt->bindParam(':nombre', $usuario->nombre);
+        $stmt->bindParam(':password', $usuario->password);
+        $stmt->bindParam(':email', $usuario->email);
+        $stmt->bindParam(':rol', $usuario->rol);
+
+        $stmt->execute();
+    }
 
 
- static function eliminarUsuario($id_usuario){
-    
-    $conexion = conectar();
+    static function eliminarUsuario($id_usuario)
+    {
 
-    // Sentencia SQL para eliminar un usuario
-    $sql = "delete from usuario where id_usuario=:id_usuario";
+        $conexion = conectar();
 
-    $stmt = $conexion->prepare($sql);
-    
-    // vincular parámetros     
-    $stmt->bindParam(':id_usuario', $id_usuario);
-       
-    $stmt->execute();    
+        // Sentencia SQL para eliminar un usuario
+        $sql = "delete from usuario where id_usuario=:id_usuario";
 
- }
+        $stmt = $conexion->prepare($sql);
 
- //Funcion que comprara los emails
- static function compararEmails($email){
-    $conexion = conectar();
+        // vincular parámetros     
+        $stmt->bindParam(':id_usuario', $id_usuario);
 
-    // Sentencia SQL para comparar emails
-    $sql = "select email from usuario where email = :email";
-    $stmt = $conexion->prepare($sql); 
+        $stmt->execute();
+    }
 
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();  
-    $encontrado=0;
+    //Funcion que comprara los emails
+    static function compararEmails($email)
+    {
+        $conexion = conectar();
 
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        $encontrado =  $row['email'];
-     }
-     if($encontrado == null){
-         return false;
-     }else{
-         return true;
-     }
- }
+        // Sentencia SQL para comparar emails
+        $sql = "select email from usuario where email = :email";
+        $stmt = $conexion->prepare($sql);
 
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $encontrado = 0;
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $encontrado =  $row['email'];
+        }
+        if ($encontrado == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    static function existeEmail($emailNuevo)
+    {
+        $conexion = conectar();
+
+        $sql = "select email from usuario";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['email'] === $emailNuevo) {
+                return true;
+            }
+        }return false;
+    }
+
+    static function actualizarUsuario($id_usuario, $nombre, $password, $emailNuevo, $rol)
+    {
+        $conexion = conectar();
+
+        $sql = "update usuario set nombre=:nombre, password=:password, email=:email, rol=:rol where id_usuario=:id_usuario";
+        $stmt = $conexion->prepare($sql);
+
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':email', $emailNuevo);
+        $stmt->bindParam(':rol', $rol);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+
+        $stmt->execute();
+
+        /* var_dump($stmt);
+        exit(); */
+    }
 }

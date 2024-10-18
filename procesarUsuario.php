@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //se introduce en variales despues de haber sido validadas
          $idUsuarioIntroducido = 0;
          $nombreIntroducido = validarNombre($_POST['nombre']);
-         $passIntroducido = password_hash($_POST['pass'], PASSWORD_DEFAULT, ['cost' => 10]);
+         $passIntroducido = validarPassword($_POST['pass']);
          if(validarEmail($_POST['email'])){
             $emailIntroducido = $_POST['email'];
          }else{
@@ -59,6 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function validarNombre($nombre){
     $nombreNuevo = strip_tags($nombre);//elimina cualquier caracter html o php
     return htmlspecialchars($nombreNuevo);//ignora los caracteres especiales
+}
+
+function ValidarPassword($password){    
+    $passwordNuevo = strip_tags($password);//elimina cualquier caracter html o php
+    $passwordNuevo = htmlspecialchars($passwordNuevo);//ignora los caracteres especiales
+    return $passwordNuevo = password_hash($_POST['pass'], PASSWORD_DEFAULT, ['cost' => 10]);
 }
 
 function validarEmail($email){
