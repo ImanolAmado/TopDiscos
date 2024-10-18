@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
  <!-- Insertamos menú -->
  <?php include_once "vistaMenu.php";?>
     
-    <h3>Editar nuevo usuario tttttt</h3><br> 
+    <h3>Editar nuevo usuario</h3><br> 
     <form class="registroNuevo" method="post" action="procesarUsuarioEditado.php">           
     <label for="nombre">Nombre: </label><br>
           <input type="hidden" id="id" name="id" value="<?php echo htmlspecialchars($id_usuario); ?>">
