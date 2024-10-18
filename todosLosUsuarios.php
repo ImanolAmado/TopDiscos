@@ -67,7 +67,7 @@ $listaUsuarios=Usuario::todosLosUsuarios();
         </form>
     </td>
       <td>
-        <form id="f2" method="post" action="editarUsuario">
+        <form id="f2" method="post" action="editarUsuarios.php">
           <input type="hidden" id="id" name="id" value="<?php echo $usuario->getId_usuario(); ?>">
           <input type="hidden" id="rol" name="rol" value="<?php echo $usuario->getRol(); ?>">
           <input type="hidden" id="nombre" name="nombre" value="<?php echo $usuario->getNombre(); ?>">

@@ -252,6 +252,24 @@ function setIsmn($ismn){
             }
          
         }
+
+
+    // Función para eliminar un disco
+    static function eliminarDisco($id_disco){
+    
+        $conexion = conectar();
+        
+        // Sentencia SQL para eliminar un usuario
+        $sql = "delete from disco where id_disco=:id_disco";
+        
+        $stmt = $conexion->prepare($sql);
+            
+        // vincular parámetros     
+        $stmt->bindParam(':id_disco', $id_disco);
+               
+        $stmt->execute();    
+        
+    }
     
 
 

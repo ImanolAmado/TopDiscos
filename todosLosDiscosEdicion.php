@@ -36,7 +36,8 @@ $listaDiscos=Disco::todosLosDiscos();
       <th scope="col">Interprete</th>
       <th scope="col">Fecha</th>
       <th scope="col">Ismn</th>
-      <th scope="col">Acciones</th>
+      <th scope="col" style="width:3%">Acciones</th>
+      <th scope="col"  style="width:3%"></th>
     </tr>
   </thead>
   <tbody>
@@ -45,11 +46,30 @@ $listaDiscos=Disco::todosLosDiscos();
     foreach($listaDiscos as $disco){ ?>
 
     <tr>
-      <td scope="row"> <?php echo $disco->getTitulo() ?></td>
-      <td> <?php echo $disco->getInterprete() ?></td>
-      <td> <?php echo $disco->getFecha_publicacion() ?></td>
-      <td> <?php echo $disco->getIsmn() ?></td>
-     
+      <td scope="row"> <?php echo $disco->getTitulo(); ?></td>
+      <td> <?php echo $disco->getInterprete(); ?></td>
+      <td> <?php echo $disco->getFecha_publicacion(); ?></td>
+      <td> <?php echo $disco->getIsmn(); ?></td>
+      <td>
+        <form id="f1" method="post" action="procesarBorrarDisco.php">
+          <input type="hidden" id="titulo" name="titulo" value="<?php echo $disco->getTitulo(); ?>">
+          <input type="hidden" id="interprete" name="interprete" value="<?php echo $disco->getInterprete(); ?>">
+          <input type="hidden" id="fecha" name="fecha" value="<?php echo $disco->getFecha_publicacion();  ?>">
+          <input type="hidden" id="ismn" name="ismn" value="<?php echo $disco->getIsmn(); ?>">
+          <input type="hidden" id="id_disco" name="id_disco" value="<?php echo $disco->getId_disco(); ?>">
+          <button type="submit" ><img src="img/bin.png" width="20px" height="20px" alt="Foto eliminar"></button> 
+        </form>
+      </td>
+      <td>
+        <form id="f2" method="post" action="editarDisco.php">
+          <input type="hidden" id="id" name="id" value="<?php  ?>">
+          <input type="hidden" id="rol" name="rol" value="<?php  ?>">
+          <input type="hidden" id="nombre" name="nombre" value="<?php  ?>">
+          <input type="hidden" id="email" name="email" value="<?php ?>">
+          <input type="hidden" id="password" name="password" value="<?php  ?>">
+          <button type="submit" ><img src="img/editar.png" width="20px" height="20px" alt="Foto editar"></button> 
+        </form>
+        </td>       
     </tr>
     <tr>    
    <?php }
